@@ -60,7 +60,6 @@ int main() {
 #include <stdio.h>
 #define NUM_CHARS 256
 
-int intlong(int a);
 int power(int x, int y);
 
 int main() {
@@ -116,15 +115,6 @@ int main() {
 	printf("\n");
 
 	return 0;
-}
-
-int intlong(int a) {
-	int i = 1;
-	int p = a/10;
-	if(p > 0) {
-		i = i + intlong(p);
-	}
-	return i;
 }
 
 int power(int x, int y) {
