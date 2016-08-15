@@ -5,7 +5,7 @@
 
 #define MAXLINE 10
 
-int buffchar(char buff[]);
+int buffline(char buff[]);
 void copyline(char buff[],int max);
 
 int main() {
@@ -16,7 +16,7 @@ int main() {
 		buff[i] = 0;
 	}
 	while (status != -1) {
-		status = buffchar(buff);
+		status = buffline(buff);
 		if(status > 0) {
 			copyline(buff, status);
 		}
@@ -24,6 +24,23 @@ int main() {
 	return 0;
 }
 
+int buffline(char buff[]) {
+	int i = 0;
+	int c;
+	int max = 0;
+	while (i< MAXLINE && (c= getchar()) != EOF && c != '\n') {
+		if(c != ' ' && c != '\t' && c!= '\n') {
+			max = i + 1;
+		}
+		buff[i++] = c;
+	}
+	if(c == '\n' || c == EOF) {
+		buff[max] = '\0';
+	}
+	return max;
+}
+
+/*
 int buffchar(char buff[]) {
 	int i = 0;
 	int c;
@@ -43,12 +60,15 @@ int buffchar(char buff[]) {
 		}
 	}
 	return max;
-}
+}*/
 
-void copyline(char buff[],int max) {
-	for (int i = 0; i < max; ++i)
-	{
+
+void copyline(char buff[]) {
+	int i;
+	i=0;
+	while(buff[i] != '\0') {
 		putchar(buff[i]);
+		++i;
 	}
 	putchar('\n');
 }
