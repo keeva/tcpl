@@ -31,14 +31,15 @@ int buffchar(char buff[]) {
 	while (i< MAXLINE) {
 		c = getchar();
 		if(c == EOF) return -1;
-		if(c != ' ' || c != '\t') {
-			max = i;
+		if(c != ' ' && c != '\t' && c!= '\n') {
+			max = i + 1;
+			//printf("%d\n", max);
 		}
 		if (c != '\n'){
 			buff[i++] = c;
 		} else {
 			i = MAXLINE;
-			buff[max++] = '\n';
+			buff[max] = '\0';
 		}
 	}
 	return max;
@@ -49,5 +50,6 @@ void copyline(char buff[],int max) {
 	{
 		putchar(buff[i]);
 	}
+	putchar('\n');
 }
 
